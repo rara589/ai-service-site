@@ -21,20 +21,9 @@
             width: 100%;
             text-align: center;
         }
-        .logo {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-        h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-        .subtitle {
-            color: #aaa;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
+        .logo { font-size: 50px; margin-bottom: 10px; }
+        h1 { font-size: 28px; margin-bottom: 5px; }
+        .subtitle { color: #aaa; margin-bottom: 30px; font-size: 14px; }
         .price-box {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             border: 1px solid #333;
@@ -42,26 +31,10 @@
             padding: 30px;
             margin-bottom: 25px;
         }
-        .price {
-            font-size: 50px;
-            font-weight: bold;
-            color: #ffd700;
-            margin: 10px 0;
-        }
-        .services-list {
-            text-align: right;
-            margin: 20px 0;
-            padding: 0 20px;
-        }
-        .services-list li {
-            margin: 10px 0;
-            color: #ccc;
-            font-size: 15px;
-            list-style: none;
-        }
-        .services-list li::before {
-            content: "✅ ";
-        }
+        .price { font-size: 50px; font-weight: bold; color: #ffd700; margin: 10px 0; }
+        .services-list { text-align: right; margin: 20px 0; padding: 0 20px; }
+        .services-list li { margin: 10px 0; color: #ccc; font-size: 15px; list-style: none; }
+        .services-list li::before { content: "✅ "; }
         .wallet-box {
             background: #1a1a2e;
             border: 1px solid #333;
@@ -70,11 +43,7 @@
             margin: 15px 0;
             text-align: left;
         }
-        .wallet-title {
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+        .wallet-title { color: #ffd700; font-weight: bold; margin-bottom: 8px; }
         .wallet-address {
             background: #0f0f1a;
             padding: 10px;
@@ -97,13 +66,7 @@
             margin: 10px 0;
             transition: all 0.3s;
         }
-        .btn-pay {
-            background: #ffd700;
-            color: #000;
-        }
-        .btn-pay:hover {
-            background: #ffed4a;
-        }
+        .btn-pay { background: #ffd700; color: #000; }
         .waiting-box {
             display: none;
             background: #1a1a2e;
@@ -113,22 +76,15 @@
             margin-top: 20px;
         }
         .spinner {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border: 5px solid #333;
             border-top: 5px solid #ffd700;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .services-area {
-            display: none;
-            margin-top: 20px;
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .services-area { display: none; margin-top: 20px; }
         .service-card {
             background: #1a1a2e;
             border: 1px solid #333;
@@ -168,11 +124,7 @@
             font-size: 14px;
             color: #ccc;
         }
-        .note {
-            color: #ff6666;
-            font-size: 12px;
-            margin-top: 10px;
-        }
+        .note { color: #ff6666; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -251,7 +203,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-        import { getFirestore, doc, setDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAe4hfoIqcObMeoVKDSB-jtceIZkVmQfbM",
@@ -293,7 +245,7 @@
                 createdAt: new Date().toISOString()
             });
 
-            await sendTelegramMessage("🚨 طلب اشتراك جديد!\n\nرقم الطلب: " + requestId + "\n\nتحقق من محفظتك ثم حدّث حالة الطلب في Firebase");
+            await sendTelegramMessage("🚨 طلب اشتراك جديد!\n\nرقم الطلب: " + requestId + "\n\nلتأكيد الدفع، افتح Firebase وغيّر status إلى approved");
 
             const requestRef = doc(db, "requests", requestId);
             onSnapshot(requestRef, (snapshot) => {
@@ -370,4 +322,4 @@
         };
     </script>
 </body>
-    </html>
+</html>
