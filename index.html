@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خدمات الذكاء الاصطناعي</title>
+    <title>Midnight - Your Safe Space</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background: #0f0f1a;
+            background: #0a0a14;
             color: #fff;
             min-height: 100vh;
             display: flex;
@@ -17,131 +17,246 @@
             padding: 20px;
         }
         .container {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             text-align: center;
         }
-        .logo { font-size: 50px; margin-bottom: 10px; }
-        h1 { font-size: 28px; margin-bottom: 5px; }
-        .subtitle { color: #aaa; margin-bottom: 30px; font-size: 14px; }
-        .price-box {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border: 1px solid #333;
+        .logo {
+            font-size: 45px;
+            margin-bottom: 10px;
+            color: #b8a9ff;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            color: #d4c5ff;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-style: italic;
+        }
+        .card {
+            background: #12121f;
+            border: 1px solid #2a2a3e;
             border-radius: 15px;
             padding: 30px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        .price { font-size: 50px; font-weight: bold; color: #ffd700; margin: 10px 0; }
-        .services-list { text-align: right; margin: 20px 0; padding: 0 20px; }
-        .services-list li { margin: 10px 0; color: #ccc; font-size: 15px; list-style: none; }
-        .services-list li::before { content: "✅ "; }
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #b8a9ff;
+            margin: 10px 0;
+        }
+        .features {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0 20px;
+            color: #ccc;
+            font-size: 14px;
+        }
+        .features li {
+            margin: 10px 0;
+            list-style: none;
+        }
+        .features li::before {
+            content: "✦ ";
+            color: #b8a9ff;
+        }
         .wallet-box {
-            background: #1a1a2e;
-            border: 1px solid #333;
+            background: #0a0a14;
+            border: 1px solid #2a2a3e;
             border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
+            padding: 15px;
+            margin: 12px 0;
             text-align: left;
         }
-        .wallet-title { color: #ffd700; font-weight: bold; margin-bottom: 8px; }
+        .wallet-title {
+            color: #b8a9ff;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
         .wallet-address {
-            background: #0f0f1a;
+            background: #1a1a2e;
             padding: 10px;
             border-radius: 5px;
-            font-size: 13px;
+            font-size: 12px;
             word-break: break-all;
             direction: ltr;
             text-align: center;
-            color: #00ff88;
+            color: #7ee8a4;
+        }
+        input, textarea {
+            width: 100%;
+            background: #0a0a14;
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            color: #fff;
+            padding: 12px;
+            font-size: 14px;
+            margin: 10px 0;
+            font-family: inherit;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
         .btn {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border: none;
             border-radius: 10px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             margin: 10px 0;
             transition: all 0.3s;
+            font-family: inherit;
         }
-        .btn-pay { background: #ffd700; color: #000; }
+        .btn-primary {
+            background: #b8a9ff;
+            color: #0a0a14;
+        }
+        .btn-primary:hover {
+            background: #d4c5ff;
+        }
+        .btn-danger {
+            background: #ff4444;
+            color: #fff;
+            font-size: 13px;
+        }
+        .btn-small {
+            background: transparent;
+            border: 1px solid #2a2a3e;
+            color: #888;
+            font-size: 12px;
+            padding: 8px;
+        }
         .waiting-box {
             display: none;
-            background: #1a1a2e;
-            border: 2px solid #ffd700;
+            background: #12121f;
+            border: 2px solid #b8a9ff;
             border-radius: 15px;
             padding: 40px 20px;
             margin-top: 20px;
         }
         .spinner {
-            width: 50px; height: 50px;
-            border: 5px solid #333;
-            border-top: 5px solid #ffd700;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #2a2a3e;
+            border-top: 5px solid #b8a9ff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .services-area { display: none; margin-top: 20px; }
-        .service-card {
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .chat-area {
+            display: none;
+        }
+        .chat-header {
+            background: #12121f;
+            border: 1px solid #2a2a3e;
+            border-radius: 15px 15px 0 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .days-left {
+            color: #b8a9ff;
+            font-size: 13px;
+        }
+        .chat-messages {
+            background: #0a0a14;
+            border: 1px solid #2a2a3e;
+            border-top: none;
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            text-align: right;
+        }
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 15px;
+            margin: 10px 0;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: right;
+        }
+        .message-user {
+            background: #b8a9ff;
+            color: #0a0a14;
+            margin-left: auto;
+            border-bottom-left-radius: 5px;
+        }
+        .message-bot {
             background: #1a1a2e;
-            border: 1px solid #333;
+            color: #ddd;
+            margin-right: auto;
+            border-bottom-right-radius: 5px;
+            text-align: right;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            background: #12121f;
+            border: 1px solid #2a2a3e;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+            padding: 15px;
+        }
+        .chat-input input {
+            flex: 1;
+            margin: 0;
+        }
+        .chat-input button {
+            width: auto;
+            padding: 12px 25px;
+            margin: 0;
+        }
+        .settings {
+            display: none;
+            margin-top: 15px;
+            background: #12121f;
+            border: 1px solid #2a2a3e;
             border-radius: 10px;
             padding: 20px;
-            margin: 10px 0;
         }
-        .service-card textarea {
-            width: 100%;
-            background: #0f0f1a;
-            border: 1px solid #444;
-            border-radius: 5px;
-            color: #fff;
-            padding: 10px;
-            font-size: 14px;
-            margin: 10px 0;
-            resize: vertical;
+        .typing {
+            color: #888;
+            font-size: 12px;
+            font-style: italic;
         }
-        .service-card button {
-            background: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .result-box {
-            background: #0f0f1a;
-            border: 1px solid #333;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 10px;
-            text-align: right;
-            display: none;
-            white-space: pre-wrap;
-            font-size: 14px;
-            color: #ccc;
-        }
-        .note { color: #ff6666; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">🤖</div>
-        <h1>خدمات الذكاء الاصطناعي</h1>
-        <p class="subtitle">اشتراك كامل يفتح لك جميع الأدوات</p>
+        <div class="logo">🌙</div>
+        <h1>Midnight</h1>
+        <p class="subtitle">Welcome to Midnight - Your safe space in the dark</p>
 
-        <div class="price-box" id="priceBox">
-            <div class="price">$45</div>
-            <div style="color:#aaa;">لمدة 30 يوم - استخدام غير محدود</div>
-            <ul class="services-list">
-                <li>كتابة مقالات احترافية</li>
-                <li>تلخيص نصوص طويلة</li>
-                <li>ترجمة عربي - إنجليزي</li>
-                <li>كتابة وصف منتجات</li>
-                <li>توليد عناوين جذابة</li>
+        <div id="signupCard" class="card">
+            <h2>Join Midnight</h2>
+            <input type="text" id="userName" placeholder="Your name..." dir="auto">
+            <div class="price">$25</div>
+            <div style="color:#aaa; font-size:13px;">per month - 30 days access</div>
+            <ul class="features">
+                <li>24/7 emotional support</li>
+                <li>Private and anonymous</li>
+                <li>Deep and thoughtful responses</li>
+                <li>Arabic conversations</li>
             </ul>
             <div class="wallet-box">
                 <div class="wallet-title">💎 USDT (TRC20)</div>
@@ -151,59 +266,44 @@
                 <div class="wallet-title">💎 USDT (BEP20)</div>
                 <div class="wallet-address">0xCF2F7FaD3f536283272C1893ec2a5b439a4fFfd3</div>
             </div>
-            <button class="btn btn-pay" onclick="sendPayment()">💰 أرسلت المبلغ - تفعيل الخدمات</button>
-            <div class="note">⚠️ بعد إرسال المبلغ، اضغط الزر وانتظر التحقق</div>
+            <button class="btn btn-primary" onclick="sendPayment()">I've sent the payment - Activate</button>
         </div>
 
         <div class="waiting-box" id="waitingBox">
             <div class="spinner"></div>
-            <h2>⏳ جارٍ التحقق من الدفع...</h2>
-            <p style="color:#aaa; margin-top:10px;">يرجى الانتظار، ستفعل الخدمات تلقائياً بعد التأكيد</p>
+            <h2>⏳ Verifying payment...</h2>
+            <p style="color:#aaa; margin-top:10px;">Please wait, your access will open automatically</p>
         </div>
 
-        <div class="services-area" id="servicesArea">
-            <h2 style="color:#ffd700; margin-bottom:20px;">✅ تم التفعيل! اختر الخدمة:</h2>
-
-            <div class="service-card">
-                <h3>📝 كتابة مقال</h3>
-                <textarea id="articleInput" placeholder="اكتب موضوع المقال هنا..." rows="3"></textarea>
-                <button onclick="generateArticle()">إنشاء المقال</button>
-                <div class="result-box" id="articleResult"></div>
+        <div class="chat-area" id="chatArea">
+            <div class="chat-header">
+                <div>
+                    <strong style="color:#b8a9ff;">🌙 Midnight</strong>
+                    <div class="days-left" id="daysLeft"></div>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-small" onclick="toggleSettings()">⚙️ Settings</button>
+                    <button class="btn btn-small btn-danger" onclick="deleteAccount()">Delete</button>
+                </div>
             </div>
-
-            <div class="service-card">
-                <h3>📄 تلخيص نص</h3>
-                <textarea id="summaryInput" placeholder="الصق النص الطويل هنا..." rows="4"></textarea>
-                <button onclick="generateSummary()">تلخيص</button>
-                <div class="result-box" id="summaryResult"></div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message message-bot" id="welcomeMsg"></div>
             </div>
-
-            <div class="service-card">
-                <h3>🌐 ترجمة</h3>
-                <textarea id="translateInput" placeholder="اكتب النص للترجمة..." rows="3"></textarea>
-                <button onclick="generateTranslation()">ترجمة</button>
-                <div class="result-box" id="translateResult"></div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Write your message..." dir="auto" onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="btn btn-primary" onclick="sendMessage()">Send</button>
             </div>
-
-            <div class="service-card">
-                <h3>🛍️ وصف منتج</h3>
-                <textarea id="productInput" placeholder="اكتب اسم المنتج أو وصفه..." rows="3"></textarea>
-                <button onclick="generateProduct()">إنشاء الوصف</button>
-                <div class="result-box" id="productResult"></div>
-            </div>
-
-            <div class="service-card">
-                <h3>✨ عناوين جذابة</h3>
-                <textarea id="titleInput" placeholder="اكتب الموضوع..." rows="2"></textarea>
-                <button onclick="generateTitles()">توليد عناوين</button>
-                <div class="result-box" id="titleResult"></div>
+            <div class="settings" id="settingsBox">
+                <h3 style="color:#b8a9ff; margin-bottom:15px;">⚙️ Settings</h3>
+                <input type="text" id="newName" placeholder="Change your name..." dir="auto">
+                <button class="btn btn-primary" onclick="changeName()">Update Name</button>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAe4hfoIqcObMeoVKDSB-jtceIZkVmQfbM",
@@ -219,107 +319,173 @@
 
         const TELEGRAM_BOT_TOKEN = "8884915447:AAH33Vrg2duFiRuSp2AqUN9srkKdJ-c-BZM";
         const TELEGRAM_CHAT_ID = "5604001542";
+        const HF_TOKEN = "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";
 
         async function sendTelegramMessage(text) {
             try {
                 await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: text
-                    })
+                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text })
                 });
-            } catch (e) {
-                console.log("Telegram error:", e);
+            } catch (e) {}
+        }
+
+        function getUserId() {
+            let id = localStorage.getItem('midnight_user_id');
+            if (!id) {
+                id = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('midnight_user_id', id);
+            }
+            return id;
+        }
+
+        async function checkSubscription() {
+            const userId = getUserId();
+            const userRef = doc(db, "midnight_users", userId);
+            const userDoc = await getDoc(userRef);
+            if (userDoc.exists()) {
+                const data = userDoc.data();
+                if (data.status === "approved") {
+                    const daysLeft = Math.ceil((data.expiresAt - Date.now()) / (1000 * 60 * 60 * 24));
+                    if (daysLeft > 0) {
+                        showChat(data.name, daysLeft);
+                    } else {
+                        showSignup();
+                    }
+                } else if (data.status === "pending") {
+                    showWaiting(userId);
+                } else {
+                    showSignup();
+                }
+            } else {
+                showSignup();
             }
         }
 
-        window.sendPayment = async function() {
-            const requestId = Date.now().toString();
-            document.getElementById('priceBox').style.display = 'none';
+        function showSignup() {
+            document.getElementById('signupCard').style.display = 'block';
+            document.getElementById('waitingBox').style.display = 'none';
+            document.getElementById('chatArea').style.display = 'none';
+        }
+
+        function showWaiting(userId) {
+            document.getElementById('signupCard').style.display = 'none';
             document.getElementById('waitingBox').style.display = 'block';
-            
-            await setDoc(doc(db, "requests", requestId), {
-                status: "pending",
-                createdAt: new Date().toISOString()
-            });
-
-            await sendTelegramMessage("🚨 طلب اشتراك جديد!\n\nرقم الطلب: " + requestId + "\n\nلتأكيد الدفع، افتح Firebase وغيّر status إلى approved");
-
-            const requestRef = doc(db, "requests", requestId);
-            onSnapshot(requestRef, (snapshot) => {
+            document.getElementById('chatArea').style.display = 'none';
+            const userRef = doc(db, "midnight_users", userId);
+            onSnapshot(userRef, (snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.data();
                     if (data.status === "approved") {
-                        document.getElementById('waitingBox').style.display = 'none';
-                        document.getElementById('servicesArea').style.display = 'block';
+                        const daysLeft = Math.ceil((data.expiresAt - Date.now()) / (1000 * 60 * 60 * 24));
+                        showChat(data.name, daysLeft);
                     } else if (data.status === "rejected") {
-                        document.getElementById('waitingBox').style.display = 'none';
-                        document.getElementById('priceBox').style.display = 'block';
-                        alert("❌ لم يتم تأكيد الدفع. حاول مرة أخرى.");
+                        showSignup();
+                        alert("Payment not confirmed. Please try again.");
                     }
                 }
             });
-        };
-
-        const HF_TOKEN = "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";
-
-        async function hfRequest(model, prompt) {
-            const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${HF_TOKEN}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ inputs: prompt })
-            });
-            const data = await response.json();
-            if (Array.isArray(data) && data[0] && data[0].generated_text) {
-                return data[0].generated_text;
-            }
-            return "حدث خطأ، حاول مرة أخرى";
         }
 
-        window.generateArticle = async function() {
-            const topic = document.getElementById('articleInput').value;
-            if (!topic) { alert("اكتب الموضوع أولاً"); return; }
-            const result = await hfRequest("gpt2", `Write an article about: ${topic}\n\nArticle:`);
-            document.getElementById('articleResult').style.display = 'block';
-            document.getElementById('articleResult').textContent = result;
+        function showChat(name, daysLeft) {
+            document.getElementById('signupCard').style.display = 'none';
+            document.getElementById('waitingBox').style.display = 'none';
+            document.getElementById('chatArea').style.display = 'block';
+            document.getElementById('daysLeft').textContent = 'Days left: ' + daysLeft;
+            document.getElementById('welcomeMsg').textContent = 'أهلاً ' + name + '، أنا هنا لأستمع إليك. كيف تشعر اليوم؟';
+        }
+
+        window.sendPayment = async function() {
+            const name = document.getElementById('userName').value.trim();
+            if (!name) {
+                alert("Please enter your name first");
+                return;
+            }
+            const userId = getUserId();
+            document.getElementById('signupCard').style.display = 'none';
+            document.getElementById('waitingBox').style.display = 'block';
+
+            await setDoc(doc(db, "midnight_users", userId), {
+                name: name,
+                status: "pending",
+                createdAt: Date.now()
+            });
+
+            await sendTelegramMessage("🌙 طلب اشتراك جديد في Midnight!\n\n👤 الاسم: " + name + "\n🆔 رقم المستخدم: " + userId + "\n\nللتأكيد: غيّر status إلى approved\nللرفض: غيّر status إلى rejected");
+
+            showWaiting(userId);
         };
 
-        window.generateSummary = async function() {
-            const text = document.getElementById('summaryInput').value;
-            if (!text) { alert("الصق النص أولاً"); return; }
-            const result = await hfRequest("facebook/bart-large-cnn", text);
-            document.getElementById('summaryResult').style.display = 'block';
-            document.getElementById('summaryResult').textContent = result;
+        window.sendMessage = async function() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const messagesDiv = document.getElementById('chatMessages');
+            messagesDiv.innerHTML += '<div class="message message-user">' + message + '</div>';
+            input.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            messagesDiv.innerHTML += '<div class="message message-bot typing">يكتب...</div>';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            const userName = document.getElementById('welcomeMsg').textContent.replace('أهلاً ', '').replace('، أنا هنا لأستمع إليك. كيف تشعر اليوم؟', '');
+
+            try {
+                const response = await fetch(`https://api-inference.huggingface.co/models/THUDM/glm-4-9b-chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + HF_TOKEN,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: "أنت مستمع عاطفي داعم. اسم المستخدم هو " + userName + ". قدم رداً طويلاً ومفصلاً وداعماً باللغة العربية على الرسالة التالية: " + message
+                    })
+                });
+                const data = await response.json();
+                const typingEl = document.querySelector('.typing');
+                if (typingEl) typingEl.remove();
+                
+                let reply = "أنا هنا معك، حدثني أكثر...";
+                if (Array.isArray(data) && data[0] && data[0].generated_text) {
+                    reply = data[0].generated_text.replace(/أنت مستمع عاطفي داعم.*?الرسالة التالية: /s, '');
+                }
+                messagesDiv.innerHTML += '<div class="message message-bot">' + reply + '</div>';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            } catch (e) {
+                const typingEl = document.querySelector('.typing');
+                if (typingEl) typingEl.remove();
+                messagesDiv.innerHTML += '<div class="message message-bot">حدث خطأ، حاول مرة أخرى</div>';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
         };
 
-        window.generateTranslation = async function() {
-            const text = document.getElementById('translateInput').value;
-            if (!text) { alert("اكتب النص أولاً"); return; }
-            const result = await hfRequest("Helsinki-NLP/opus-mt-ar-en", text);
-            document.getElementById('translateResult').style.display = 'block';
-            document.getElementById('translateResult').textContent = result;
+        window.toggleSettings = function() {
+            const box = document.getElementById('settingsBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
         };
 
-        window.generateProduct = async function() {
-            const product = document.getElementById('productInput').value;
-            if (!product) { alert("اكتب المنتج أولاً"); return; }
-            const result = await hfRequest("gpt2", `Write a product description for: ${product}\n\nDescription:`);
-            document.getElementById('productResult').style.display = 'block';
-            document.getElementById('productResult').textContent = result;
+        window.changeName = async function() {
+            const newName = document.getElementById('newName').value.trim();
+            if (!newName) { alert("Enter a name"); return; }
+            const userId = getUserId();
+            await updateDoc(doc(db, "midnight_users", userId), { name: newName });
+            document.getElementById('welcomeMsg').textContent = 'أهلاً ' + newName + '، أنا هنا لأستمع إليك. كيف تشعر اليوم؟';
+            document.getElementById('newName').value = '';
+            toggleSettings();
         };
 
-        window.generateTitles = async function() {
-            const topic = document.getElementById('titleInput').value;
-            if (!topic) { alert("اكتب الموضوع أولاً"); return; }
-            const result = await hfRequest("gpt2", `Generate catchy titles about: ${topic}\n\nTitles:`);
-            document.getElementById('titleResult').style.display = 'block';
-            document.getElementById('titleResult').textContent = result;
+        window.deleteAccount = async function() {
+            if (confirm("Are you sure you want to delete your account?")) {
+                const userId = getUserId();
+                await deleteDoc(doc(db, "midnight_users", userId));
+                localStorage.removeItem('midnight_user_id');
+                showSignup();
+            }
         };
+
+        checkSubscription();
     </script>
 </body>
-</html>
+                                                                     </html>
