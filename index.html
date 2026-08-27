@@ -4,10 +4,370 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خدمات الذكاء الاصطناعي</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: #0f0f1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .price-box {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+        .price {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 10px 0;
+        }
+        .services-list {
+            text-align: right;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        .services-list li {
+            margin: 10px 0;
+            color: #ccc;
+            font-size: 15px;
+            list-style: none;
+        }
+        .services-list li::before {
+            content: "✅ ";
+        }
+        .wallet-box {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        .wallet-title {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .wallet-address {
+            background: #0f0f1a;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            word-break: break-all;
+            direction: ltr;
+            text-align: center;
+            color: #00ff88;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        .btn-pay {
+            background: #ffd700;
+            color: #000;
+        }
+        .btn-pay:hover {
+            background: #ffed4a;
+        }
+        .waiting-box {
+            display: none;
+            background: #1a1a2e;
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 40px 20px;
+            margin-top: 20px;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-top: 5px solid #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .services-area {
+            display: none;
+            margin-top: 20px;
+        }
+        .service-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .service-card textarea {
+            width: 100%;
+            background: #0f0f1a;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+            resize: vertical;
+        }
+        .service-card button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .result-box {
+            background: #0f0f1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+            text-align: right;
+            display: none;
+            white-space: pre-wrap;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .note {
+            color: #ff6666;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f4f4f4;">
-    <h1 style="color: #333;">🤖 خدمات الذكاء الاصطناعي</h1>
-    <p>مرحباً بك! موقعك يعمل بنجاح 🎉</p>
-    <p>قريباً سنضيف الخدمات هنا</p>
+<body>
+    <div class="container">
+        <div class="logo">🤖</div>
+        <h1>خدمات الذكاء الاصطناعي</h1>
+        <p class="subtitle">اشتراك كامل يفتح لك جميع الأدوات</p>
+
+        <div class="price-box" id="priceBox">
+            <div class="price">$45</div>
+            <div style="color:#aaa;">لمدة 30 يوم - استخدام غير محدود</div>
+            <ul class="services-list">
+                <li>كتابة مقالات احترافية</li>
+                <li>تلخيص نصوص طويلة</li>
+                <li>ترجمة عربي - إنجليزي</li>
+                <li>كتابة وصف منتجات</li>
+                <li>توليد عناوين جذابة</li>
+            </ul>
+            <div class="wallet-box">
+                <div class="wallet-title">💎 USDT (TRC20)</div>
+                <div class="wallet-address">TUrhn3AA3NqoCMD4DLuiBULbsm1okp1C6c</div>
+            </div>
+            <div class="wallet-box">
+                <div class="wallet-title">💎 USDT (BEP20)</div>
+                <div class="wallet-address">0xCF2F7FaD3f536283272C1893ec2a5b439a4fFfd3</div>
+            </div>
+            <button class="btn btn-pay" onclick="sendPayment()">💰 أرسلت المبلغ - تفعيل الخدمات</button>
+            <div class="note">⚠️ بعد إرسال المبلغ، اضغط الزر وانتظر التحقق</div>
+        </div>
+
+        <div class="waiting-box" id="waitingBox">
+            <div class="spinner"></div>
+            <h2>⏳ جارٍ التحقق من الدفع...</h2>
+            <p style="color:#aaa; margin-top:10px;">يرجى الانتظار، ستفعل الخدمات تلقائياً بعد التأكيد</p>
+        </div>
+
+        <div class="services-area" id="servicesArea">
+            <h2 style="color:#ffd700; margin-bottom:20px;">✅ تم التفعيل! اختر الخدمة:</h2>
+
+            <div class="service-card">
+                <h3>📝 كتابة مقال</h3>
+                <textarea id="articleInput" placeholder="اكتب موضوع المقال هنا..." rows="3"></textarea>
+                <button onclick="generateArticle()">إنشاء المقال</button>
+                <div class="result-box" id="articleResult"></div>
+            </div>
+
+            <div class="service-card">
+                <h3>📄 تلخيص نص</h3>
+                <textarea id="summaryInput" placeholder="الصق النص الطويل هنا..." rows="4"></textarea>
+                <button onclick="generateSummary()">تلخيص</button>
+                <div class="result-box" id="summaryResult"></div>
+            </div>
+
+            <div class="service-card">
+                <h3>🌐 ترجمة</h3>
+                <textarea id="translateInput" placeholder="اكتب النص للترجمة..." rows="3"></textarea>
+                <button onclick="generateTranslation()">ترجمة</button>
+                <div class="result-box" id="translateResult"></div>
+            </div>
+
+            <div class="service-card">
+                <h3>🛍️ وصف منتج</h3>
+                <textarea id="productInput" placeholder="اكتب اسم المنتج أو وصفه..." rows="3"></textarea>
+                <button onclick="generateProduct()">إنشاء الوصف</button>
+                <div class="result-box" id="productResult"></div>
+            </div>
+
+            <div class="service-card">
+                <h3>✨ عناوين جذابة</h3>
+                <textarea id="titleInput" placeholder="اكتب الموضوع..." rows="2"></textarea>
+                <button onclick="generateTitles()">توليد عناوين</button>
+                <div class="result-box" id="titleResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAe4hfoIqcObMeoVKDSB-jtceIZkVmQfbM",
+            authDomain: "ai-service-site-d08cb.firebaseapp.com",
+            projectId: "ai-service-site-d08cb",
+            storageBucket: "ai-service-site-d08cb.firebasestorage.app",
+            messagingSenderId: "461501830477",
+            appId: "1:461501830477:web:28deefbec329c01f53d304"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const TELEGRAM_BOT_TOKEN = "8884915447:AAH33Vrg2duFiRuSp2AqUN9srkKdJ-c-BZM";
+        const TELEGRAM_CHAT_ID = "5604001542";
+
+        async function sendTelegramMessage(text) {
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: text
+                    })
+                });
+            } catch (e) {
+                console.log("Telegram error:", e);
+            }
+        }
+
+        window.sendPayment = async function() {
+            const requestId = Date.now().toString();
+            document.getElementById('priceBox').style.display = 'none';
+            document.getElementById('waitingBox').style.display = 'block';
+            
+            await setDoc(doc(db, "requests", requestId), {
+                status: "pending",
+                createdAt: new Date().toISOString()
+            });
+
+            await sendTelegramMessage("🚨 طلب اشتراك جديد!\n\nرقم الطلب: " + requestId + "\n\nتحقق من محفظتك ثم حدّث حالة الطلب في Firebase");
+
+            const requestRef = doc(db, "requests", requestId);
+            onSnapshot(requestRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    if (data.status === "approved") {
+                        document.getElementById('waitingBox').style.display = 'none';
+                        document.getElementById('servicesArea').style.display = 'block';
+                    } else if (data.status === "rejected") {
+                        document.getElementById('waitingBox').style.display = 'none';
+                        document.getElementById('priceBox').style.display = 'block';
+                        alert("❌ لم يتم تأكيد الدفع. حاول مرة أخرى.");
+                    }
+                }
+            });
+        };
+
+        const HF_TOKEN = "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";
+
+        async function hfRequest(model, prompt) {
+            const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${HF_TOKEN}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ inputs: prompt })
+            });
+            const data = await response.json();
+            if (Array.isArray(data) && data[0] && data[0].generated_text) {
+                return data[0].generated_text;
+            }
+            return "حدث خطأ، حاول مرة أخرى";
+        }
+
+        window.generateArticle = async function() {
+            const topic = document.getElementById('articleInput').value;
+            if (!topic) { alert("اكتب الموضوع أولاً"); return; }
+            const result = await hfRequest("gpt2", `Write an article about: ${topic}\n\nArticle:`);
+            document.getElementById('articleResult').style.display = 'block';
+            document.getElementById('articleResult').textContent = result;
+        };
+
+        window.generateSummary = async function() {
+            const text = document.getElementById('summaryInput').value;
+            if (!text) { alert("الصق النص أولاً"); return; }
+            const result = await hfRequest("facebook/bart-large-cnn", text);
+            document.getElementById('summaryResult').style.display = 'block';
+            document.getElementById('summaryResult').textContent = result;
+        };
+
+        window.generateTranslation = async function() {
+            const text = document.getElementById('translateInput').value;
+            if (!text) { alert("اكتب النص أولاً"); return; }
+            const result = await hfRequest("Helsinki-NLP/opus-mt-ar-en", text);
+            document.getElementById('translateResult').style.display = 'block';
+            document.getElementById('translateResult').textContent = result;
+        };
+
+        window.generateProduct = async function() {
+            const product = document.getElementById('productInput').value;
+            if (!product) { alert("اكتب المنتج أولاً"); return; }
+            const result = await hfRequest("gpt2", `Write a product description for: ${product}\n\nDescription:`);
+            document.getElementById('productResult').style.display = 'block';
+            document.getElementById('productResult').textContent = result;
+        };
+
+        window.generateTitles = async function() {
+            const topic = document.getElementById('titleInput').value;
+            if (!topic) { alert("اكتب الموضوع أولاً"); return; }
+            const result = await hfRequest("gpt2", `Generate catchy titles about: ${topic}\n\nTitles:`);
+            document.getElementById('titleResult').style.display = 'block';
+            document.getElementById('titleResult').textContent = result;
+        };
+    </script>
 </body>
-</html>
+    </html>
